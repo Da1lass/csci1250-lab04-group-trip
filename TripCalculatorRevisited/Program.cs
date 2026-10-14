@@ -32,7 +32,7 @@ decimal moneyRecievedInPaycheck;
 
 //cost vars
 decimal tripTotalCost;
-decimal CostPerPerson;
+decimal costPerPerson;
 decimal moneyRecievedInPaycheckPerHour;
 double hoursNeededToWorkToPayYourPart;
 
@@ -95,4 +95,4 @@ tripTotalCost = fuelCost + totalPizzaCost; System.Console.WriteLine($"Trip Total
 System.Console.WriteLine("=== Part 2: The Group ===");
 System.Console.WriteLine($"People going: {names.Length}");
 slicesPerPerson = PizzaSlices(pizzasNeeded, peopleAttending); System.Console.WriteLine($"Slices each: {slicesPerPerson}");
-System.Console.WriteLine($"Cost per Person {totalPizzaCost / peopleAttending}");
+costPerPerson = tripTotalCost / peopleAttending; System.Console.WriteLine($"Cost per Person {costPerPerson.ToString("C")}");
