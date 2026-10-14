@@ -42,32 +42,6 @@ int totalHours = 0;
 decimal totalTakeHomePay = 0;
 double longestShift = 0;
 
-
-static decimal FuelCost(double roundTripMiles, double milesPerGallon, decimal pricePerGallon) {
-    double gallonsNeeded = roundTripMiles / milesPerGallon;
-    decimal fuelCost = Convert.ToDecimal(gallonsNeeded) * pricePerGallon;
-    return fuelCost; }
-
-static decimal TakeHomePay(double hoursWorkedThisWeek, double hourlyWage) {
-    decimal grossPay = (decimal)hourlyWage * (decimal)hoursWorkedThisWeek;
-    decimal taxWithHeld = grossPay * TAX_RATE;
-    decimal moneyRecievedInPaycheck = grossPay - taxWithHeld;
-    return moneyRecievedInPaycheck; }
-
-static double HoursWorkedToPay(decimal costPerPerson, decimal moneyRecievedInPaycheck, double hoursWorked) {
-    decimal moneyRecievedInPaycheckPerHour = moneyRecievedInPaycheck / (decimal)hoursWorked;
-    double hoursNeededToWorkToPayYourPart = Convert.ToDouble(costPerPerson / moneyRecievedInPaycheckPerHour);
-    return hoursNeededToWorkToPayYourPart; }
-
-static decimal PizzaCost(int pizzasNeeded, decimal pricePerPizza) {   
-    decimal totalPizzaCost = pizzasNeeded * pricePerPizza;
-    return totalPizzaCost; }
-
-static double PizzaSlices(int pizzasNeeded, int peopleAttending) {
-    int totalSLices = pizzasNeeded * SLICES_PER_PIZZA;
-    double slicesPerPerson = totalSLices / peopleAttending;
-    return slicesPerPerson; }
-
 //begin fuel var assignment
 System.Console.Write("Round miles? ");
 roundTripMiles = Convert.ToDouble(System.Console.ReadLine());
@@ -119,3 +93,28 @@ System.Console.WriteLine("");
 System.Console.WriteLine($"Total hours worked: {totalHours}");
 System.Console.WriteLine($"Total take home pay: {totalTakeHomePay.ToString("C")}");
 System.Console.WriteLine($"Longest anyone must work: {longestShift.ToString("F2")}");
+
+static decimal FuelCost(double roundTripMiles, double milesPerGallon, decimal pricePerGallon) {
+    double gallonsNeeded = roundTripMiles / milesPerGallon;
+    decimal fuelCost = Convert.ToDecimal(gallonsNeeded) * pricePerGallon;
+    return fuelCost; }
+
+static decimal TakeHomePay(double hoursWorkedThisWeek, double hourlyWage) {
+    decimal grossPay = (decimal)hourlyWage * (decimal)hoursWorkedThisWeek;
+    decimal taxWithHeld = grossPay * TAX_RATE;
+    decimal moneyRecievedInPaycheck = grossPay - taxWithHeld;
+    return moneyRecievedInPaycheck; }
+
+static double HoursWorkedToPay(decimal costPerPerson, decimal moneyRecievedInPaycheck, double hoursWorked) {
+    decimal moneyRecievedInPaycheckPerHour = moneyRecievedInPaycheck / (decimal)hoursWorked;
+    double hoursNeededToWorkToPayYourPart = Convert.ToDouble(costPerPerson / moneyRecievedInPaycheckPerHour);
+    return hoursNeededToWorkToPayYourPart; }
+
+static decimal PizzaCost(int pizzasNeeded, decimal pricePerPizza) {   
+    decimal totalPizzaCost = pizzasNeeded * pricePerPizza;
+    return totalPizzaCost; }
+
+static double PizzaSlices(int pizzasNeeded, int peopleAttending) {
+    int totalSLices = pizzasNeeded * SLICES_PER_PIZZA;
+    double slicesPerPerson = totalSLices / peopleAttending;
+    return slicesPerPerson; }
