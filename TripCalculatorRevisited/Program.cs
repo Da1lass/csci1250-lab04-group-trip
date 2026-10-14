@@ -91,6 +91,7 @@ fuelCost = FuelCost(roundTripMiles, milesPerGallon, pricePerGallon); System.Cons
 totalPizzaCost = PizzaCost(pizzasNeeded, pricePerPizza); System.Console.WriteLine($"Pizza Cost: {totalPizzaCost.ToString("C")}");
 tripTotalCost = fuelCost + totalPizzaCost; System.Console.WriteLine($"Trip Total: {tripTotalCost.ToString("C")}");
 
+//printing out part2 values
 System.Console.WriteLine("=== Part 2: The Group ===");
 System.Console.WriteLine($"People going: {names.Length}");
 slicesPerPerson = PizzaSlices(pizzasNeeded, peopleAttending); System.Console.WriteLine($"Slices each: {slicesPerPerson}");
