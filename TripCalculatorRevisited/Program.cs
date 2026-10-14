@@ -37,6 +37,9 @@ decimal costPerPerson;
 
 //other vars (will prob be moved into another var catagory)
 int peopleAttending = names.Length;
+int totalHours = 0;
+decimal totalTakeHomePay = 0;
+double longestShift = 0;
 
 
 static decimal FuelCost(double roundTripMiles, double milesPerGallon, decimal pricePerGallon) {
@@ -86,24 +89,33 @@ pricePerPizza = Convert.ToDecimal(System.Console.ReadLine());
 //end pizza var assignment
 
 //printing out part1 values
+System.Console.WriteLine("");
 System.Console.WriteLine("=== Part 1: The Trip ===");
 fuelCost = FuelCost(roundTripMiles, milesPerGallon, pricePerGallon); System.Console.WriteLine($"Fuel Cost: {fuelCost.ToString("C")}");
 totalPizzaCost = PizzaCost(pizzasNeeded, pricePerPizza); System.Console.WriteLine($"Pizza Cost: {totalPizzaCost.ToString("C")}");
 tripTotalCost = fuelCost + totalPizzaCost; System.Console.WriteLine($"Trip Total: {tripTotalCost.ToString("C")}");
 
 //printing out part2 values
+System.Console.WriteLine("");
 System.Console.WriteLine("=== Part 2: The Group ===");
 System.Console.WriteLine($"People going: {names.Length}");
 slicesPerPerson = PizzaSlices(pizzasNeeded, peopleAttending); System.Console.WriteLine($"Slices each: {slicesPerPerson.ToString("F2")}");
 costPerPerson = tripTotalCost / peopleAttending; System.Console.WriteLine($"Cost per Person {costPerPerson.ToString("C")}");
 
-//printing out part2 values
+//printing out part3 values
+System.Console.WriteLine("");
 System.Console.WriteLine("=== Part 3: Who Works How Long ===");
 
 for (int i = 0; i < names.Length; i++) {
     moneyRecievedInPaycheck = TakeHomePay(hoursWorked[i], hourlyRates[i]);
     hoursNeededToWorkToPayYourPart = HoursWorkedToPay(costPerPerson, moneyRecievedInPaycheck, hoursWorked[i]);
     moneyRecievedInPaycheckPerHour = moneyRecievedInPaycheck / (decimal)hoursWorked[i];
+    totalHours += (int)hoursWorked[i];
+    totalTakeHomePay += moneyRecievedInPaycheck;
+    longestShift = Math.Max(longestShift,hoursNeededToWorkToPayYourPart);
     System.Console.WriteLine($"{names[i]}: takes home {moneyRecievedInPaycheck.ToString("C")} for {hoursWorked[i]} hours, {moneyRecievedInPaycheckPerHour.ToString("C")} per hour, must work {hoursNeededToWorkToPayYourPart.ToString("F2")} hours.");
 }
-
+System.Console.WriteLine("");
+System.Console.WriteLine($"Total hours worked: {totalHours}");
+System.Console.WriteLine($"Total take home pay: {totalTakeHomePay.ToString("C")}");
+System.Console.WriteLine($"Longest anyone must work: {longestShift.ToString("F2")}");
