@@ -97,24 +97,24 @@ System.Console.WriteLine($"Longest anyone must work: {longestShift.ToString("F2"
 static decimal FuelCost(double roundTripMiles, double milesPerGallon, decimal pricePerGallon) {
     double gallonsNeeded = roundTripMiles / milesPerGallon;
     decimal fuelCost = Convert.ToDecimal(gallonsNeeded) * pricePerGallon;
-    return fuelCost; }
+    return fuelCost; } //returns fuel cost for the trip
 
 static decimal TakeHomePay(double hoursWorkedThisWeek, double hourlyWage) {
     decimal grossPay = (decimal)hourlyWage * (decimal)hoursWorkedThisWeek;
     decimal taxWithHeld = grossPay * TAX_RATE;
     decimal moneyRecievedInPaycheck = grossPay - taxWithHeld;
-    return moneyRecievedInPaycheck; }
+    return moneyRecievedInPaycheck; } //returns how much each person makes per paycheck
 
 static double HoursWorkedToPay(decimal costPerPerson, decimal moneyRecievedInPaycheck, double hoursWorked) {
     decimal moneyRecievedInPaycheckPerHour = moneyRecievedInPaycheck / (decimal)hoursWorked;
     double hoursNeededToWorkToPayYourPart = Convert.ToDouble(costPerPerson / moneyRecievedInPaycheckPerHour);
-    return hoursNeededToWorkToPayYourPart; }
+    return hoursNeededToWorkToPayYourPart; } //returns the hours each person neededs to work to pay their portion of trip costs
 
 static decimal PizzaCost(int pizzasNeeded, decimal pricePerPizza) {   
     decimal totalPizzaCost = pizzasNeeded * pricePerPizza;
-    return totalPizzaCost; }
+    return totalPizzaCost; } //returns the total cost of the pizzas
 
 static double PizzaSlices(int pizzasNeeded, int peopleAttending) {
     int totalSLices = pizzasNeeded * SLICES_PER_PIZZA;
     double slicesPerPerson = totalSLices / peopleAttending;
-    return slicesPerPerson; }
+    return slicesPerPerson; } //returns how many pizza slices each person gets
