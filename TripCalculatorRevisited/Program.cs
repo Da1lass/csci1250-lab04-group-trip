@@ -9,8 +9,21 @@
 double roundTripMiles; 
 double milesPerGallon;
 decimal pricePerGallon;
-double gallonsNeeded;
 decimal fuelCost;
+
+static decimal FuelCost(double roundTripMiles, double milesPerGallon, decimal pricePerGallon) {
+    double gallonsNeeded = roundTripMiles / milesPerGallon;
+    decimal fuelCost = Convert.ToDecimal(gallonsNeeded) * pricePerGallon;
+    return fuelCost; }
+
+static double TakeHomePay(double hours, double hourlyRate, double taxRate)
+{
+    
+}
+static double HoursToCover(double amountOwed, double takeHomePerHour)
+{
+    
+}
 
 System.Console.Write("Round miles? ");
 roundTripMiles = Convert.ToDouble(System.Console.ReadLine());
@@ -25,12 +38,10 @@ System.Console.WriteLine("");
 System.Console.Write("Price per gallon? ");
 pricePerGallon = Convert.ToDecimal(System.Console.ReadLine());
 
-gallonsNeeded = roundTripMiles / milesPerGallon;
-fuelCost = Convert.ToDecimal(gallonsNeeded) * pricePerGallon;
 
+fuelCost = FuelCost(roundTripMiles, milesPerGallon, pricePerGallon);
 System.Console.WriteLine("");
-System.Console.WriteLine($"Gallons needed: {gallonsNeeded.ToString("F2")}");
-System.Console.WriteLine($"Fuel Cost: {fuelCost.ToString("C")}");
+System.Console.WriteLine(fuelCost.ToString("C"));
 
 int pizzasNeeded;
 decimal pricePerPizza;
@@ -50,12 +61,12 @@ System.Console.Write("Price per pizza? ");
 pricePerPizza = Convert.ToDecimal(System.Console.ReadLine());
 
 totalSLices = pizzasNeeded * SLICES_PER_PIZZA;
-slicePerPerson = totalSLices / peopleAttending;
+//slicePerPerson = totalSLices / peopleAttending;
 totalPizzaCost = pizzasNeeded * pricePerPizza;
 
 System.Console.WriteLine("");
 System.Console.WriteLine($"Total slices: {totalSLices.ToString("")}");
-System.Console.WriteLine($"Slices per person: {slicePerPerson.ToString("F2")}");
+//System.Console.WriteLine($"Slices per person: {slicePerPerson.ToString("F2")}");
 System.Console.WriteLine($"Pizza Cost: {totalPizzaCost.ToString("C")}");
 
 const decimal TAX_RATE = 0.18M;
@@ -64,14 +75,14 @@ decimal taxWithHeld;
 decimal moneyRecievedInPaycheck;
 
 
-grossPay = hourlyWage * hoursWorkedThisWeek;
-taxWithHeld = grossPay * TAX_RATE;
-moneyRecievedInPaycheck = grossPay - taxWithHeld;
+//grossPay = hourlyWage * hoursWorkedThisWeek;
+//taxWithHeld = grossPay * TAX_RATE;
+//moneyRecievedInPaycheck = grossPay - taxWithHeld;
 
 System.Console.WriteLine("");
-System.Console.WriteLine($"Gross pay: {grossPay.ToString("C")}");
-System.Console.WriteLine($"Tax withheld: {taxWithHeld.ToString("C")}");
-System.Console.WriteLine($"Take home pay: {moneyRecievedInPaycheck.ToString("C")}");
+//System.Console.WriteLine($"Gross pay: {grossPay.ToString("C")}");
+//System.Console.WriteLine($"Tax withheld: {taxWithHeld.ToString("C")}");
+//System.Console.WriteLine($"Take home pay: {moneyRecievedInPaycheck.ToString("C")}");
 
 decimal tripTotalCost;
 decimal CostPerPerson;
@@ -79,11 +90,11 @@ decimal moneyRecievedInPaycheckPerHour;
 double hoursNeededToWorkToPayYourPart;
 
 tripTotalCost = fuelCost + totalPizzaCost;
-CostPerPerson = tripTotalCost / peopleAttending;
-moneyRecievedInPaycheckPerHour = moneyRecievedInPaycheck / hoursWorkedThisWeek;
-hoursNeededToWorkToPayYourPart = Convert.ToDouble(CostPerPerson / moneyRecievedInPaycheckPerHour);
+//CostPerPerson = tripTotalCost / peopleAttending;
+//moneyRecievedInPaycheckPerHour = moneyRecievedInPaycheck / hoursWorkedThisWeek;
+//hoursNeededToWorkToPayYourPart = Convert.ToDouble(CostPerPerson / moneyRecievedInPaycheckPerHour);
 
 System.Console.WriteLine($"Trip total: {tripTotalCost.ToString("C")}");
-System.Console.WriteLine($"Cost per person: {CostPerPerson.ToString("C")}");
-System.Console.WriteLine($"Take home pay per hour: {moneyRecievedInPaycheckPerHour.ToString("C")}");
-System.Console.WriteLine($"Hours you must work to pay for your portion: {hoursNeededToWorkToPayYourPart.ToString("F2")}");
+//System.Console.WriteLine($"Cost per person: {CostPerPerson.ToString("C")}");
+//System.Console.WriteLine($"Take home pay per hour: {moneyRecievedInPaycheckPerHour.ToString("C")}");
+//System.Console.WriteLine($"Hours you must work to pay for your portion: {hoursNeededToWorkToPayYourPart.ToString("F2")}");
