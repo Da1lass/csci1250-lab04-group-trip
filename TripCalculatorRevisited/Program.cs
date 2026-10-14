@@ -1,10 +1,11 @@
 ﻿/*
- * Name: Dallas Sutton
- * Course: CSCI 1250, Section 001
- * Assignment: Lab 2, Trip Calculator
- * Date: September 23, 2026
- * Description: Calculates information about trip costs.
- */
+* Name: Dallas Sutton
+* Course: CSCI 1250, Section 001
+* Assignment: Lab 04, The Group Trip
+* Date: October 7, 2026
+* Description: Rebuilds the trip calculator with methods and arrays so it
+* reports on a whole group instead of one person.
+*/
 
 //arrays given by Desjarsin
 string[] names = { "Ada", "Grace", "Alan", "Katherine" };
@@ -35,7 +36,7 @@ decimal tripTotalCost;
 decimal costPerPerson;
 
 
-//other vars (will prob be moved into another var catagory)
+//information and logic vars
 int peopleAttending = names.Length;
 int totalHours = 0;
 decimal totalTakeHomePay = 0;
@@ -51,24 +52,22 @@ static decimal TakeHomePay(double hoursWorkedThisWeek, double hourlyWage) {
     decimal grossPay = (decimal)hourlyWage * (decimal)hoursWorkedThisWeek;
     decimal taxWithHeld = grossPay * TAX_RATE;
     decimal moneyRecievedInPaycheck = grossPay - taxWithHeld;
-    return moneyRecievedInPaycheck;
-}
+    return moneyRecievedInPaycheck; }
 
 static double HoursWorkedToPay(decimal costPerPerson, decimal moneyRecievedInPaycheck, double hoursWorked) {
     decimal moneyRecievedInPaycheckPerHour = moneyRecievedInPaycheck / (decimal)hoursWorked;
     double hoursNeededToWorkToPayYourPart = Convert.ToDouble(costPerPerson / moneyRecievedInPaycheckPerHour);
-    return hoursNeededToWorkToPayYourPart;
-}
+    return hoursNeededToWorkToPayYourPart; }
 
 static decimal PizzaCost(int pizzasNeeded, decimal pricePerPizza) {   
     decimal totalPizzaCost = pizzasNeeded * pricePerPizza;
-    return totalPizzaCost;
-}
+    return totalPizzaCost; }
+
 static double PizzaSlices(int pizzasNeeded, int peopleAttending) {
     int totalSLices = pizzasNeeded * SLICES_PER_PIZZA;
     double slicesPerPerson = totalSLices / peopleAttending;
-    return slicesPerPerson;
-}
+    return slicesPerPerson; }
+
 //begin fuel var assignment
 System.Console.Write("Round miles? ");
 roundTripMiles = Convert.ToDouble(System.Console.ReadLine());
@@ -113,8 +112,9 @@ for (int i = 0; i < names.Length; i++) {
     totalHours += (int)hoursWorked[i];
     totalTakeHomePay += moneyRecievedInPaycheck;
     longestShift = Math.Max(longestShift,hoursNeededToWorkToPayYourPart);
-    System.Console.WriteLine($"{names[i]}: takes home {moneyRecievedInPaycheck.ToString("C")} for {hoursWorked[i]} hours, {moneyRecievedInPaycheckPerHour.ToString("C")} per hour, must work {hoursNeededToWorkToPayYourPart.ToString("F2")} hours.");
-}
+    System.Console.WriteLine($"{names[i]}: takes home {moneyRecievedInPaycheck.ToString("C")} for {hoursWorked[i]} hours, {moneyRecievedInPaycheckPerHour.ToString("C")} per hour, must work {hoursNeededToWorkToPayYourPart.ToString("F2")} hours."); }
+
+//final outputs
 System.Console.WriteLine("");
 System.Console.WriteLine($"Total hours worked: {totalHours}");
 System.Console.WriteLine($"Total take home pay: {totalTakeHomePay.ToString("C")}");
