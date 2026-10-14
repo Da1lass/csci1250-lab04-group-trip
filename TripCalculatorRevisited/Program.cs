@@ -17,7 +17,6 @@ decimal fuelCost;
 int pizzasNeeded;
 decimal pricePerPizza;
 int totalSLices;
-double slicePerPerson;
 decimal totalPizzaCost;
 const int SLICES_PER_PIZZA = 8;
 
@@ -43,13 +42,22 @@ static decimal FuelCost(double roundTripMiles, double milesPerGallon, decimal pr
     decimal fuelCost = Convert.ToDecimal(gallonsNeeded) * pricePerGallon;
     return fuelCost; }
 
-static double TakeHomePay(double hours, double hourlyRate, double taxRate) {
+static decimal TakeHomePay(double hoursWorkedThisWeek, decimal hourlyWage, double taxRate) {
+    decimal grossPay = hourlyWage * (decimal)hoursWorkedThisWeek;
+    decimal taxWithHeld = grossPay * TAX_RATE;
+    decimal moneyRecievedInPaycheck = grossPay - taxWithHeld;
+    return moneyRecievedInPaycheck;
+}
+
+static double HoursToCover(double amountOwed, double takeHomePerHour) {
     
 }
 
-static double HoursToCover(double amountOwed, double takeHomePerHour)
-{
-    
+static decimal PizzaCost(int pizzasNeeded, int slicesPerPizza, int peopleAttending, decimal pricePerPizza) {
+    int totalSLices = pizzasNeeded * SLICES_PER_PIZZA;
+    double slicePerPerson = totalSLices / peopleAttending;
+    decimal totalPizzaCost = pizzasNeeded * pricePerPizza;
+    return totalPizzaCost;
 }
 
 //begin fuel var assignment
@@ -73,30 +81,4 @@ System.Console.Write("Price per pizza? ");
 pricePerPizza = Convert.ToDecimal(System.Console.ReadLine());
 //end pizza var assignment
 
-totalSLices = pizzasNeeded * SLICES_PER_PIZZA;
-//slicePerPerson = totalSLices / peopleAttending;
-totalPizzaCost = pizzasNeeded * pricePerPizza;
-
-System.Console.WriteLine("");
-System.Console.WriteLine($"Total slices: {totalSLices.ToString("")}");
-//System.Console.WriteLine($"Slices per person: {slicePerPerson.ToString("F2")}");
-System.Console.WriteLine($"Pizza Cost: {totalPizzaCost.ToString("C")}");
-
-grossPay = hourlyWage * hoursWorkedThisWeek;
-taxWithHeld = grossPay * TAX_RATE;
-moneyRecievedInPaycheck = grossPay - taxWithHeld;
-
-System.Console.WriteLine("");
-//System.Console.WriteLine($"Gross pay: {grossPay.ToString("C")}");
-//System.Console.WriteLine($"Tax withheld: {taxWithHeld.ToString("C")}");
-//System.Console.WriteLine($"Take home pay: {moneyRecievedInPaycheck.ToString("C")}");
-
-tripTotalCost = fuelCost + totalPizzaCost;
-//CostPerPerson = tripTotalCost / peopleAttending;
-//moneyRecievedInPaycheckPerHour = moneyRecievedInPaycheck / hoursWorkedThisWeek;
-//hoursNeededToWorkToPayYourPart = Convert.ToDouble(CostPerPerson / moneyRecievedInPaycheckPerHour);
-
-System.Console.WriteLine($"Trip total: {tripTotalCost.ToString("C")}");
-//System.Console.WriteLine($"Cost per person: {CostPerPerson.ToString("C")}");
-//System.Console.WriteLine($"Take home pay per hour: {moneyRecievedInPaycheckPerHour.ToString("C")}");
-//System.Console.WriteLine($"Hours you must work to pay for your portion: {hoursNeededToWorkToPayYourPart.ToString("F2")}");
+totalPizzaCost = PizzaCost(pizzasNeeded, SLICES_PER_PIZZA, peopleAttending, pricePerPizza); System.Console.WriteLine(totalPizzaCost.ToString("C"));
