@@ -26,15 +26,14 @@ const int SLICES_PER_PIZZA = 8;
 
 //wage vars
 const decimal TAX_RATE = 0.18M;
-decimal grossPay;
-decimal taxWithHeld;
 decimal moneyRecievedInPaycheck;
+decimal moneyRecievedInPaycheckPerHour;
+double hoursNeededToWorkToPayYourPart;
 
 //cost vars
 decimal tripTotalCost;
 decimal costPerPerson;
-decimal moneyRecievedInPaycheckPerHour;
-double hoursNeededToWorkToPayYourPart;
+
 
 //other vars (will prob be moved into another var catagory)
 int peopleAttending = names.Length;
@@ -45,19 +44,20 @@ static decimal FuelCost(double roundTripMiles, double milesPerGallon, decimal pr
     decimal fuelCost = Convert.ToDecimal(gallonsNeeded) * pricePerGallon;
     return fuelCost; }
 
-static decimal TakeHomePay(double hoursWorkedThisWeek, decimal hourlyWage, double taxRate) {
-    decimal grossPay = hourlyWage * (decimal)hoursWorkedThisWeek;
+static decimal TakeHomePay(double hoursWorkedThisWeek, double hourlyWage) {
+    decimal grossPay = (decimal)hourlyWage * (decimal)hoursWorkedThisWeek;
     decimal taxWithHeld = grossPay * TAX_RATE;
     decimal moneyRecievedInPaycheck = grossPay - taxWithHeld;
     return moneyRecievedInPaycheck;
 }
 
-//static double HoursToCover(double amountOwed, double takeHomePerHour) {
+static double HoursWorkedToPay(decimal tripTotalCost, double hoursWorked) {
     
-//}
+    double hoursNeededToWorkToPayYourPart;
+    return hoursNeededToWorkToPayYourPart;
+}
 
-static decimal PizzaCost(int pizzasNeeded, decimal pricePerPizza) {
-    
+static decimal PizzaCost(int pizzasNeeded, decimal pricePerPizza) {   
     decimal totalPizzaCost = pizzasNeeded * pricePerPizza;
     return totalPizzaCost;
 }
@@ -96,3 +96,17 @@ System.Console.WriteLine("=== Part 2: The Group ===");
 System.Console.WriteLine($"People going: {names.Length}");
 slicesPerPerson = PizzaSlices(pizzasNeeded, peopleAttending); System.Console.WriteLine($"Slices each: {slicesPerPerson}");
 costPerPerson = tripTotalCost / peopleAttending; System.Console.WriteLine($"Cost per Person {costPerPerson.ToString("C")}");
+
+//printing out part2 values
+System.Console.WriteLine("=== Part 3: Who Works How Long ===");
+
+for (int i = 0; i < names.Length; i++) {
+    moneyRecievedInPaycheck = TakeHomePay(hoursWorked[i], hourlyRates[i]);
+    hoursNeededToWorkToPayYourPart = HoursWorkedToPay(tripTotalCost, hoursWorked[i]);
+    moneyRecievedInPaycheckPerHour = moneyRecievedInPaycheck / (decimal)hoursWorked[i];
+
+
+
+
+    System.Console.WriteLine($"{names[i]}: takes home {moneyRecievedInPaycheck.ToString("C")} for {hoursWorked[i]}, {moneyRecievedInPaycheckPerHour} per hour, must work {hoursNeededToWorkToPayYourPart.ToString("F2")} hours.");
+}
