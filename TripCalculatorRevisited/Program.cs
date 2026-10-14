@@ -32,16 +32,12 @@ System.Console.WriteLine("");
 System.Console.WriteLine($"Gallons needed: {gallonsNeeded.ToString("F2")}");
 System.Console.WriteLine($"Fuel Cost: {fuelCost.ToString("C")}");
 
-int peopleAttending;
 int pizzasNeeded;
 decimal pricePerPizza;
 int totalSLices;
 double slicePerPerson;
 decimal totalPizzaCost;
 const int SLICES_PER_PIZZA = 8;
-
-System.Console.Write("How many people are attending? ");
-peopleAttending = Convert.ToInt32(System.Console.ReadLine());
 
 System.Console.WriteLine("");
 
@@ -62,18 +58,11 @@ System.Console.WriteLine($"Total slices: {totalSLices.ToString("")}");
 System.Console.WriteLine($"Slices per person: {slicePerPerson.ToString("F2")}");
 System.Console.WriteLine($"Pizza Cost: {totalPizzaCost.ToString("C")}");
 
-int hoursWorkedThisWeek;
-decimal hourlyWage; 
 const decimal TAX_RATE = 0.18M;
 decimal grossPay;
 decimal taxWithHeld;
 decimal moneyRecievedInPaycheck;
 
-System.Console.Write("How many hours did you work this week? ");
-hoursWorkedThisWeek = Convert.ToInt32(System.Console.ReadLine());
-
-System.Console.Write("What is your hourly pay? ");
-hourlyWage = Convert.ToDecimal(System.Console.ReadLine());
 
 grossPay = hourlyWage * hoursWorkedThisWeek;
 taxWithHeld = grossPay * TAX_RATE;
