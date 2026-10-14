@@ -51,9 +51,9 @@ static decimal TakeHomePay(double hoursWorkedThisWeek, double hourlyWage) {
     return moneyRecievedInPaycheck;
 }
 
-static double HoursWorkedToPay(decimal tripTotalCost, double hoursWorked) {
-    
-    double hoursNeededToWorkToPayYourPart;
+static double HoursWorkedToPay(decimal costPerPerson, decimal moneyRecievedInPaycheck, double hoursWorked) {
+    decimal moneyRecievedInPaycheckPerHour = moneyRecievedInPaycheck / (decimal)hoursWorked;
+    double hoursNeededToWorkToPayYourPart = Convert.ToDouble(costPerPerson / moneyRecievedInPaycheckPerHour);
     return hoursNeededToWorkToPayYourPart;
 }
 
@@ -94,7 +94,7 @@ tripTotalCost = fuelCost + totalPizzaCost; System.Console.WriteLine($"Trip Total
 //printing out part2 values
 System.Console.WriteLine("=== Part 2: The Group ===");
 System.Console.WriteLine($"People going: {names.Length}");
-slicesPerPerson = PizzaSlices(pizzasNeeded, peopleAttending); System.Console.WriteLine($"Slices each: {slicesPerPerson}");
+slicesPerPerson = PizzaSlices(pizzasNeeded, peopleAttending); System.Console.WriteLine($"Slices each: {slicesPerPerson.ToString("F2")}");
 costPerPerson = tripTotalCost / peopleAttending; System.Console.WriteLine($"Cost per Person {costPerPerson.ToString("C")}");
 
 //printing out part2 values
@@ -102,11 +102,8 @@ System.Console.WriteLine("=== Part 3: Who Works How Long ===");
 
 for (int i = 0; i < names.Length; i++) {
     moneyRecievedInPaycheck = TakeHomePay(hoursWorked[i], hourlyRates[i]);
-    hoursNeededToWorkToPayYourPart = HoursWorkedToPay(tripTotalCost, hoursWorked[i]);
+    hoursNeededToWorkToPayYourPart = HoursWorkedToPay(costPerPerson, moneyRecievedInPaycheck, hoursWorked[i]);
     moneyRecievedInPaycheckPerHour = moneyRecievedInPaycheck / (decimal)hoursWorked[i];
-
-
-
-
-    System.Console.WriteLine($"{names[i]}: takes home {moneyRecievedInPaycheck.ToString("C")} for {hoursWorked[i]}, {moneyRecievedInPaycheckPerHour} per hour, must work {hoursNeededToWorkToPayYourPart.ToString("F2")} hours.");
+    System.Console.WriteLine($"{names[i]}: takes home {moneyRecievedInPaycheck.ToString("C")} for {hoursWorked[i]} hours, {moneyRecievedInPaycheckPerHour.ToString("C")} per hour, must work {hoursNeededToWorkToPayYourPart.ToString("F2")} hours.");
 }
+
